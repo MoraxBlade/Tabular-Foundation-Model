@@ -1,0 +1,23 @@
+# 核心Python版本（强制统一）
+python==3.10.14
+
+# 数据处理
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+
+# 基线模型
+xgboost==2.1.1
+lightgbm==4.5.0
+
+# 表格基础模型（你指定的TabPFN 2.5）
+tabpfn==2.5.0
+tabicl==0.2.1  # 2026年5月最新版，兼容TabPFN 2.5
+
+# 实验工具
+memory-profiler==0.61.0
+psutil==6.0.0  # 补充内存监控依赖，更稳定
+
+# 可视化（报告用）
+matplotlib==3.9.2
+seaborn==0.13.2
