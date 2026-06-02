@@ -24,3 +24,50 @@
 - 所有实验使用固定随机种子42
 - 数据集划分7:3
 - 结果保存为CSV格式，列名统一：dataset, model, accuracy, f1, auc, train_time, infer_time, memory_usage
+
+## 文件结构
+```bash
+Tabular-Foundation-Model/
+├── code/                     # 所有代码文件
+│   ├── 01_data_preprocess.py # 数据集预处理脚本
+│   ├── 02_baseline_xgboost.py # XGBoost基线实验脚本
+│   ├── 03_baseline_lightgbm.py # LightGBM基线实验脚本
+│   ├── 04_tabpfn_v2.py       # TabPFN v2实验脚本（成员2负责）
+│   ├── 05_tabicl_v2.py       # TabICL v2实验脚本（成员3负责）
+│   ├── 06_missing_value.py   # 缺失值实验数据集生成脚本
+│   ├── 07_scalability.py     # 可扩展性实验脚本
+│   ├── 08_summary_results.py # 实验结果自动汇总脚本
+│   └── utils.py              # 统一实验工具函数（数据加载、评估、保存）
+├── data/                     # 数据集目录
+│   ├── raw/                  # 原始数据集（仅放下载链接，大文件不上传Git）
+│   │   └── download_links.txt
+│   ├── processed/            # 预处理后的训练/测试集
+│   └── missing/              # 缺失值实验数据集
+├── results/                  # 所有实验结果（CSV格式）
+│   ├── baseline/             # 基线模型结果
+│   ├── tabpfn/               # TabPFN v2结果
+│   ├── tabicl/               # TabICL v2结果
+│   └── summary.csv           # 所有实验结果汇总表
+├── report/                   # 报告与答辩材料
+│   ├── drafts/               # 个人初步报告/草稿（按分工提交）
+│   │   ├── 1_baseline.md     # 基线实验报告
+│   │   ├── 2_tabpfn.md       # TabPFN实验报告
+│   │   ├── 3_tabicl.md       # TabICL实验报告
+│   │   ├── 4_efficiency.md   # 效率分析报告
+│   │   └── daily_update/     # 每日进度更新
+│   ├── figures/              # 所有实验图表（统一存放，共享使用）
+│   └── final/                # 最终提交材料
+│       ├── main.md           # 最终完整报告
+│       ├── main.pdf          # 导出的PDF版本
+│       └── presentation.pptx # 答辩PPT
+├── .gitignore                # Git忽略文件配置
+├── requirements.txt          # 依赖库版本清单
+└── README.md                 # 项目说明文档
+```
+
+## 协作规范
+1. 所有代码提交至`code/`目录，遵循现有脚本格式
+2. 个人实验报告提交至`report/drafts/`，命名格式：`成员编号_负责模块.md`
+3. 所有图表导出为300DPI PNG格式，提交至`report/figures/`
+4. 实验结果保存至`results/`对应子目录，使用统一CSV格式
+5. 最终报告和PPT由报告负责人统一整合至`report/final/`目录
