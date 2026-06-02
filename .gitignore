@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pth
+*.pt
+*.pkl
+*.egg-info/
+dist/
+build/
+
+# 大文件（绝对禁止提交）
+# 备份/压缩文件
+*.csv.bak
+*.zip
+*.tar.gz
+*.rar
+
+# 原始数据不入库，仅保留下载链接
+data/raw/*
+!data/raw/download_links.txt
+
+# 处理后数据：允许提交小型 CSV（可用于复现实验），但排除已知超大的文件。
+# 如果需要跟踪较大的处理后文件，请使用 Git LFS（推荐）。
+data/processed/covtype.csv  # covtype超过100MB，单独排除
+data/processed/*.zip
+data/processed/*.tar.gz
+data/processed/*.rar
+data/processed/*.csv.bak
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE / editor
+.vscode/
+.idea/
+
+# 临时文件
+*.log
+*.tmp
+*.bak
+.ipynb_checkpoints/
+
+# Virtualenv / environment
+venv/
+ENV/
+.env
+.venv/
+
+# Testing / cache
+.pytest_cache/
+
+# Model weights and large binaries (do not commit large trained models)
+models/
+*.h5
+*.ckpt
+
+# Logs directory
+logs/
