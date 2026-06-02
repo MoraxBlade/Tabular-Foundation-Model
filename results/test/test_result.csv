@@ -1,0 +1,3 @@
+dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
+adult,LogisticRegression,0.7873,0.6322,0.7171,2.87,0.0001,271.45
+adult,LogisticRegression,0.8042,0.6766,0.8089,3.38,0.0001,271.3
