@@ -5,8 +5,11 @@
 2. 创建虚拟环境：`conda create -n tabfm python=3.10.14`
     - 这里需要下载conda
 3. 激活环境：`conda activate tabfm`
-4. 安装依赖：`pip install -r requirements.txt`
-5. 下载数据集：见`data/raw/download_links.txt`
+4. 安装依赖：`pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
+    - 用了镜像源，会快很多
+5. 验证：`pit list`
+5. 下载数据集：见`download_datasets.py`
+    - openML本身太不稳定了，直接api下载
 6. 运行数据预处理：`python code/01_data_preprocess.py`
 
 ## 分工

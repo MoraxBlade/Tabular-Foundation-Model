@@ -1,5 +1,5 @@
 # 核心Python版本（强制统一）
-python==3.10.14
+# python==3.10.14
 
 # 数据处理
 pandas==2.2.3
@@ -11,8 +11,8 @@ xgboost==2.1.1
 lightgbm==4.5.0
 
 # 表格基础模型（你指定的TabPFN 2.5）
-tabpfn==2.5.0
-tabicl==0.2.1  # 2026年5月最新版，兼容TabPFN 2.5
+tabpfn>=7.0.0
+tabicl>=2.0.0  # 2026年5月最新版，兼容TabPFN 2.5
 
 # 实验工具
 memory-profiler==0.61.0
