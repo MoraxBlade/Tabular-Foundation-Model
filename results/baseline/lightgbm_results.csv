@@ -1,0 +1,4 @@
+dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
+adult,LightGBM,0.8672,0.8083,0.9227,3.26,0.0009,371.61
+credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
+covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
