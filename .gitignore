@@ -19,13 +19,16 @@ build/
 data/raw/*
 !data/raw/download_links.txt
 
-# 处理后数据：允许提交小型 CSV（可用于复现实验），但排除已知超大的文件。
-# 如果需要跟踪较大的处理后文件，请使用 Git LFS（推荐）。
-data/processed/covtype.csv  # covtype超过100MB，单独排除
+# 处理后数据：仅允许提交<10MB的小型CSV，所有超大文件全部排除
+# covtype预处理后会生成train/test两个文件，都要排除
+data/processed/covtype*.csv
 data/processed/*.zip
 data/processed/*.tar.gz
 data/processed/*.rar
 data/processed/*.csv.bak
+
+# 缺失值数据集同样排除超大文件
+data/missing/covtype*.csv
 
 # 系统文件
 .DS_Store
@@ -36,6 +39,8 @@ Thumbs.db
 # IDE / editor
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 
 # 临时文件
 *.log
@@ -48,14 +53,17 @@ venv/
 ENV/
 .env
 .venv/
+env/
 
 # Testing / cache
 .pytest_cache/
+.mypy_cache/
 
-# Model weights and large binaries (do not commit large trained models)
+# Model weights and large binaries
 models/
 *.h5
 *.ckpt
+*.onnx
 
 # Logs directory
 logs/
