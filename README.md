@@ -44,6 +44,8 @@ Tabular-Foundation-Model/
 │   ├── 06_missing_value.py    # 生成缺失值数据集的脚本（用于缺失值实验）
 │   ├── 07_baseline_missing_experiment.py # 缺失值基线实验（命名与用途示例）
 │   ├── 08_summary_results.py  # 汇总并生成 `results/summary.csv` 的脚本
+    ├── 09_scalability_dataset.py  # 可扩展性脚本
+    ├── 10_scalability_baseline.py #
 │   └── utils.py               # 通用工具（数据加载、评估指标、结果保存）
 ├── data/                      # 保存数据集（原始/预处理/含缺失版本）
 │   ├── raw/                   # 原始数据或下载链接（大文件建议不直接入仓）

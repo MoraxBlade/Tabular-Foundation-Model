@@ -143,12 +143,24 @@ def draw_missing_trend_separate(df):
 # ==================== 可扩展性曲线（每个数据集一张） ====================
 def draw_scalability(df):
     """为每个数据集绘制可扩展性曲线（样本量 vs 准确率）"""
-    scal_df = df[df["model"].str.contains(r"_\d+k$", regex=True, na=False)].copy()
+    # 匹配 _数字k 或 _数字samples
+    scal_df = df[df["model"].str.contains(r"_(\d+k|\d+samples)$", regex=True, na=False)].copy()
     if scal_df.empty:
         print("No scalability results found, skip")
         return
-    scal_df["sample_size"] = scal_df["model"].str.extract(r"_(\d+)k$").astype(int)
-    scal_df["base_model"] = scal_df["model"].str.replace(r"_\d+k$", "", regex=True)
+
+    def extract_sample_size(s):
+        m = re.search(r"_(\d+)k$", s)
+        if m:
+            return int(m.group(1)) * 1000
+        m = re.search(r"_(\d+)samples$", s)
+        if m:
+            return int(m.group(1))
+        return -1
+
+    scal_df["sample_size"] = scal_df["model"].apply(extract_sample_size)
+    scal_df = scal_df[scal_df["sample_size"] > 0]
+    scal_df["base_model"] = scal_df["model"].str.replace(r"_\d+k$|_\d+samples$", "", regex=True)
 
     datasets = scal_df["dataset"].unique()
     for ds in datasets:
@@ -161,9 +173,9 @@ def draw_scalability(df):
             plt.plot(bm_sub["sample_size"], bm_sub["accuracy"],
                      marker='s', label=bm, linewidth=2)
         plt.title(f"{ds} - Scalability")
-        plt.xlabel("Sample Size (k)")
+        plt.xlabel("Sample Size")
         plt.ylabel(LABEL_ACC)
-        plt.xscale("log")
+        plt.xscale("log")  # 对数坐标适合跨度大的样本量
         plt.grid(True, alpha=0.3)
         plt.legend()
         plt.tight_layout()

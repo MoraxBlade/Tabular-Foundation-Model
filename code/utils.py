@@ -132,6 +132,29 @@ def load_missing_dataset(dataset_name, ratio_str):
     X_test = test.drop(test.columns[-1], axis=1)
     y_test = test.iloc[:, -1]
     return X_train, X_test, y_train, y_test
+# 可扩展性处理相关函数（新增加载不同样本量数据集的函数）
+def load_scalability_dataset(dataset_name, sample_size):
+    """
+    加载可扩展性实验数据集（不同样本量的训练集 + 原始测试集）
+    sample_size: 整数，例如 1000、10000、100000、700
+    """
+    train_path = f"data/scalability/{dataset_name}_train_{sample_size}samples.csv"
+    test_path = f"data/processed/{dataset_name}_test.csv"
+    
+    if not os.path.exists(train_path):
+        raise FileNotFoundError(f"可扩展性训练集不存在：{train_path}")
+    if not os.path.exists(test_path):
+        raise FileNotFoundError(f"测试集不存在：{test_path}")
+    
+    train = pd.read_csv(train_path)
+    test = pd.read_csv(test_path)
+    X_train = train.drop(train.columns[-1], axis=1)
+    y_train = train.iloc[:, -1]
+    X_test = test.drop(test.columns[-1], axis=1)
+    y_test = test.iloc[:, -1]
+    print(f"  加载 {dataset_name} | 训练样本数={len(X_train)} | 测试样本数={len(X_test)}")
+    return X_train, X_test, y_train, y_test
+
 
 # 可选：测试函数（直接运行utils.py可验证基础功能）
 if __name__ == "__main__":
