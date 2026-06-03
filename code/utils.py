@@ -120,6 +120,19 @@ def save_result(result, save_path):
     except Exception as e:
         raise RuntimeError(f"保存结果失败：{str(e)}")
 
+
+# 缺失值处理相关函数（新增加载缺失值数据集的函数）
+def load_missing_dataset(dataset_name, ratio_str):
+    train_path = f"data/missing/{dataset_name}_train_{ratio_str}.csv"
+    test_path = f"data/missing/{dataset_name}_test_{ratio_str}.csv"
+    train = pd.read_csv(train_path)
+    test = pd.read_csv(test_path)
+    X_train = train.drop(train.columns[-1], axis=1)
+    y_train = train.iloc[:, -1]
+    X_test = test.drop(test.columns[-1], axis=1)
+    y_test = test.iloc[:, -1]
+    return X_train, X_test, y_train, y_test
+
 # 可选：测试函数（直接运行utils.py可验证基础功能）
 if __name__ == "__main__":
     # 测试1：加载数据集（需先完成预处理）
