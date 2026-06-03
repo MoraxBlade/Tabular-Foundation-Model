@@ -73,7 +73,7 @@ Tabular-Foundation-Model/
 ├── report/                    # 报告与答辩材料（草稿、图表、最终稿）
 │   ├── drafts/                # 各成员草稿与分工提交（按文件命名规则）
 │   │   ├── 1_baseline.md
-│   │   ├── daily_update.md
+│   │   ├── daily_update.md    # 同步更新
 │   │   └── ...
 │   ├── figures/               # 导出的图表（统一格式、300 DPI PNG）
 │   └── final/                 # 最终整合材料（main.md / main.pdf / PPT）
