@@ -4,6 +4,9 @@
 1. 克隆仓库：`git clone https://github.com/MoraxBlade/Tabular-Foundation-Model.git`
 2. 创建虚拟环境：`conda create -n tabfm python=3.10.14`
     - 这里需要下载conda
+        - 初始化：`conda init powershell`
+        - 关掉现在的终端
+        - 执行激活命令：`conda activate tabfm`
     - 好处是删掉conda就能把所有为了项目安的东西删掉了
 3. 激活环境：`conda activate tabfm`
 4. 安装依赖：`pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
