@@ -110,7 +110,7 @@ dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
 为确保所有模型结果可公平对比并自动被 `08_summary_results.py` 汇总，请 TabPFN v2 和 TabICL v2 的负责人严格按照以下规范编写实验脚本。
 
 ### 1. 必须使用的统一工具函数
-所有数据加载、评估、结果保存必须调用 `utils.py` 中已实现的函数，**禁止重新实现**：
+所有数据加载、评估、结果保存必须调用 `utils.py` 中已实现的函数
 - 数据加载：
   - 基础实验：`load_dataset(dataset_name)` → 返回 `X_train, X_test, y_train, y_test`
   - 缺失值实验：`load_missing_dataset(dataset_name, ratio_str)`  
@@ -130,7 +130,7 @@ dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
 | 缺失值实验 | `"{模型名}_{X}missing"` | `"TabPFN_10missing"`, `"TabICL_30missing"` | X 为缺失百分比（0,10,20,30） |
 | 可扩展性实验 | `"{模型名}_{size}samples"` | `"TabPFN_10000samples"`, `"TabICL_700samples"` | size 为样本量整数 |
 
-> ⚠️ 注意：可扩展性实验的模型名必须使用 `_数字samples` 后缀（不要用 `_数字k`），因为 `08_summary_results.py` 已同时支持两种格式。
+> 注意：可扩展性实验的模型名可用 `_数字samples` 后缀也用 `_数字k`，因为 `08_summary_results.py` 已同时支持两种格式。
 
 ### 3. 结果保存路径
 - TabPFN v2 的所有结果统一保存至 `results/tabpfn/` 目录
@@ -163,48 +163,5 @@ dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
 ### 5. 固定配置（与基线严格一致）
 - 随机种子：`SEED = 42`（已从 `utils` 导入）
 - 数据集划分：训练集 70% / 测试集 30%（预处理时已固定）
-- 模型参数：全部使用官方推荐默认参数，**不做超参数调优**
+- 模型参数：全部使用官方推荐默认参数
 - 设备：统一使用 `device="cpu"`（确保内存监控稳定）
-
-### 6. 脚本结构建议（参考基线脚本）
-可参照 `02_baseline_xgboost.py` 和 `10_scalability_baseline.py` 的结构，每个实验类型定义一个函数，在 `if __name__ == "__main__"` 中调用。  
-示例框架：
-```python
-import os
-from utils import load_dataset, load_missing_dataset, load_scalability_dataset, evaluate_model, save_result, SEED
-from tabpfn import TabPFNClassifier   # 或 from tabicl import TabICLClassifier
-
-MODEL_NAME = "TabPFN"   # 或 "TabICL"
-SAVE_DIR = "results/tabpfn"   # 或 "results/tabicl"
-os.makedirs(SAVE_DIR, exist_ok=True)
-
-def run_basic():
-    for ds in ["adult", "credit-g", "covtype"]:
-        X_train, X_test, y_train, y_test = load_dataset(ds)
-        model = TabPFNClassifier(device="cpu", version="2.5", n_estimators=100, random_state=SEED)
-        result = evaluate_model(model, X_train, X_test, y_train, y_test, MODEL_NAME, ds)
-        save_result(result, os.path.join(SAVE_DIR, "basic.csv"))
-
-def run_missing():
-    ratios = [0, 0.1, 0.2, 0.3]
-    for ds in ["adult", "credit-g", "covtype"]:
-        for r in ratios:
-            r_str = f"{int(r*100)}missing"
-            X_train, X_test, y_train, y_test = load_missing_dataset(ds, r_str)
-            model = TabPFNClassifier(device="cpu", version="2.5", n_estimators=100, random_state=SEED)
-            result = evaluate_model(model, X_train, X_test, y_train, y_test, f"{MODEL_NAME}_{r_str}", ds)
-            save_result(result, os.path.join(SAVE_DIR, "missing.csv"))
-
-def run_scalability():
-    sizes_map = {"adult": [1000,10000], "covtype": [1000,10000,100000], "credit-g": [700]}
-    for ds, sizes in sizes_map.items():
-        for size in sizes:
-            X_train, X_test, y_train, y_test = load_scalability_dataset(ds, size)
-            model = TabPFNClassifier(device="cpu", version="2.5", n_estimators=100, random_state=SEED)
-            result = evaluate_model(model, X_train, X_test, y_train, y_test, f"{MODEL_NAME}_{size}samples", ds)
-            save_result(result, os.path.join(SAVE_DIR, "scalability.csv"))
-
-if __name__ == "__main__":
-    run_basic()
-    run_missing()
-    run_scalability()
