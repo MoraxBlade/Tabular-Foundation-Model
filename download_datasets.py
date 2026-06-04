@@ -33,7 +33,7 @@ datasets = [
         "name": "covtype",
         "source": "uci",
         "url": "http://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz",
-        "save_path": "data/raw/covtype.csv"
+        "save_path": "data/raw/covtype_raw.csv"   # 修改为 _raw 后缀，避免与预处理后的降采样版本混淆
     }
 ]
 
@@ -101,6 +101,7 @@ def save_covtype(save_path: str) -> pd.DataFrame:
     )
     df.to_csv(save_path, index=False)
     return df
+
 
 for ds in datasets:
     print(f"正在下载 OpenML ID {ds['openml_id']} ({ds['name']})...")

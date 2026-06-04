@@ -1,7 +1,7 @@
 dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
-adult,LightGBM_1000samples,0.8248,0.7496,0.8808,3.6,0.0017,486.62
-adult,LightGBM_10000samples,0.8659,0.8062,0.918,3.4,0.0008,405.27
-covtype,LightGBM_1000samples,0.7045,0.4899,0.8823,2.73,0.0057,557.53
-covtype,LightGBM_10000samples,0.8092,0.6854,0.9546,3.0,0.0041,577.38
-covtype,LightGBM_100000samples,0.8514,0.8034,0.9761,2.36,0.0034,670.63
-credit-g,LightGBM_700samples,0.76,0.6828,0.7508,4.62,0.0035,482.01
+adult,LightGBM_1000samples,0.8248,0.7496,0.8808,3.11,0.0015,511.71
+adult,LightGBM_10000samples,0.8659,0.8062,0.918,3.92,0.0009,410.86
+covtype,LightGBM_1000samples,0.7045,0.4899,0.8823,3.11,0.0051,566.53
+covtype,LightGBM_10000samples,0.8092,0.6854,0.9546,3.67,0.0039,583.96
+covtype,LightGBM_100000samples,0.8514,0.8034,0.9761,3.01,0.0035,678.91
+credit-g,LightGBM_700samples,0.76,0.6828,0.7508,3.85,0.0067,507.62

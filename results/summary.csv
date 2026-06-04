@@ -9,6 +9,7 @@ adult,LightGBM,0.8672,0.8083,0.9227,3.26,0.0009,371.61
 adult,LightGBM,0.8672,0.8083,0.9227,3.26,0.0009,371.61
 adult,LightGBM,0.8672,0.8083,0.9227,3.26,0.0009,371.61
 adult,LightGBM,0.8672,0.8083,0.9227,3.26,0.0009,371.61
+adult,LightGBM,0.8672,0.8083,0.9227,3.47,0.0009,398.61
 adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
 adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
 adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
@@ -19,8 +20,11 @@ adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
 adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
 adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
 adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.14,0.0008,502.97
+adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.45,0.0008,519.19
 adult,LightGBM_10000samples,0.8659,0.8062,0.918,3.4,0.0008,405.27
+adult,LightGBM_10000samples,0.8659,0.8062,0.918,3.92,0.0009,410.86
 adult,LightGBM_1000samples,0.8248,0.7496,0.8808,3.6,0.0017,486.62
+adult,LightGBM_1000samples,0.8248,0.7496,0.8808,3.11,0.0015,511.71
 adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
 adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
 adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
@@ -31,6 +35,7 @@ adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
 adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
 adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
 adult,LightGBM_10missing,0.861,0.7983,0.9139,4.65,0.001,415.83
+adult,LightGBM_10missing,0.861,0.7983,0.9139,3.95,0.001,415.88
 adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
 adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
 adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
@@ -41,6 +46,7 @@ adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
 adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
 adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
 adult,LightGBM_20missing,0.8541,0.7856,0.9054,3.97,0.0013,416.68
+adult,LightGBM_20missing,0.8541,0.7856,0.9054,2.67,0.0008,418.91
 adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
 adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
 adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
@@ -51,6 +57,9 @@ adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
 adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
 adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
 adult,LightGBM_30missing,0.8456,0.7712,0.894,2.7,0.0012,414.79
+adult,LightGBM_30missing,0.8456,0.7712,0.894,3.23,0.0013,414.51
+adult,LogisticRegression,0.7873,0.6322,0.7171,2.87,0.0001,271.45
+adult,LogisticRegression,0.8042,0.6766,0.8089,3.38,0.0001,271.3
 adult,LogisticRegression,0.7873,0.6322,0.7171,2.87,0.0001,271.45
 adult,LogisticRegression,0.8042,0.6766,0.8089,3.38,0.0001,271.3
 adult,LogisticRegression,0.7873,0.6322,0.7171,2.87,0.0001,271.45
@@ -81,6 +90,7 @@ adult,XGBoost,0.8662,0.8078,0.9206,3.06,0.0008,379.76
 adult,XGBoost,0.8662,0.8078,0.9206,3.06,0.0008,379.76
 adult,XGBoost,0.8662,0.8078,0.9206,3.06,0.0008,379.76
 adult,XGBoost,0.8662,0.8078,0.9206,3.06,0.0008,379.76
+adult,XGBoost,0.8662,0.8078,0.9206,2.98,0.0007,379.54
 adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
 adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
 adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
@@ -91,8 +101,11 @@ adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
 adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
 adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
 adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.75,0.001,410.03
+adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.18,0.0007,404.19
 adult,XGBoost_10000samples,0.8614,0.8021,0.9135,3.49,0.0008,405.33
+adult,XGBoost_10000samples,0.8614,0.8021,0.9135,4.08,0.001,410.73
 adult,XGBoost_1000samples,0.8234,0.7499,0.8767,4.49,0.001,396.84
+adult,XGBoost_1000samples,0.8234,0.7499,0.8767,3.14,0.0007,399.19
 adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
 adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
 adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
@@ -103,6 +116,7 @@ adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
 adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
 adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
 adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.73,0.0009,418.8
+adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.86,0.0008,417.33
 adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
 adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
 adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
@@ -113,6 +127,7 @@ adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
 adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
 adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
 adult,XGBoost_20missing,0.8522,0.786,0.9018,2.91,0.0013,423.46
+adult,XGBoost_20missing,0.8522,0.786,0.9018,3.95,0.0008,422.65
 adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
 adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
 adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
@@ -123,6 +138,7 @@ adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
 adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
 adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
 adult,XGBoost_30missing,0.846,0.7749,0.8914,3.08,0.0012,415.77
+adult,XGBoost_30missing,0.846,0.7749,0.8914,4.43,0.0012,425.55
 covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
 covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
 covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
@@ -133,6 +149,7 @@ covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
 covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
 covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
 covtype,LightGBM,0.8514,0.8291,0.9795,4.21,0.0032,835.66
+covtype,LightGBM,0.8514,0.8291,0.9795,4.38,0.0029,842.32
 covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
 covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
 covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
@@ -143,9 +160,13 @@ covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
 covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
 covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
 covtype,LightGBM_0missing,0.8514,0.8291,0.9795,5.29,0.0033,991.22
+covtype,LightGBM_0missing,0.8514,0.8291,0.9795,4.61,0.0032,973.03
 covtype,LightGBM_100000samples,0.8514,0.8034,0.9761,2.36,0.0034,670.63
+covtype,LightGBM_100000samples,0.8514,0.8034,0.9761,3.01,0.0035,678.91
 covtype,LightGBM_10000samples,0.8092,0.6854,0.9546,3.0,0.0041,577.38
+covtype,LightGBM_10000samples,0.8092,0.6854,0.9546,3.67,0.0039,583.96
 covtype,LightGBM_1000samples,0.7045,0.4899,0.8823,2.73,0.0057,557.53
+covtype,LightGBM_1000samples,0.7045,0.4899,0.8823,3.11,0.0051,566.53
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
@@ -156,6 +177,7 @@ covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,7.47,0.0048,1124.77
+covtype,LightGBM_10missing,0.8038,0.7379,0.9598,5.79,0.0038,1127.0
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
@@ -166,6 +188,7 @@ covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,8.53,0.0072,1332.32
+covtype,LightGBM_20missing,0.7672,0.6779,0.9565,6.46,0.0045,1332.56
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
@@ -176,6 +199,7 @@ covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,8.14,0.0062,828.99
+covtype,LightGBM_30missing,0.7345,0.6223,0.9416,7.14,0.0053,828.67
 covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
 covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
 covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
@@ -186,6 +210,7 @@ covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
 covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
 covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
 covtype,XGBoost,0.8693,0.8515,0.989,7.97,0.0015,957.11
+covtype,XGBoost,0.8693,0.8515,0.989,8.38,0.0012,956.95
 covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
 covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
 covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
@@ -196,9 +221,13 @@ covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
 covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
 covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
 covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.47,0.0014,995.34
+covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.16,0.0012,993.61
 covtype,XGBoost_100000samples,0.8592,0.8173,0.9846,3.44,0.0013,675.68
+covtype,XGBoost_100000samples,0.8592,0.8173,0.9846,3.42,0.0013,682.42
 covtype,XGBoost_10000samples,0.806,0.6865,0.9556,3.36,0.0011,574.28
+covtype,XGBoost_10000samples,0.806,0.6865,0.9556,4.2,0.0011,577.89
 covtype,XGBoost_1000samples,0.7023,0.5013,0.8856,2.76,0.001,553.48
+covtype,XGBoost_1000samples,0.7023,0.5013,0.8856,3.15,0.001,561.02
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
@@ -209,6 +238,7 @@ covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,13.77,0.0018,1178.52
+covtype,XGBoost_10missing,0.8162,0.7661,0.9762,10.49,0.0018,1177.71
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
@@ -219,6 +249,7 @@ covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,12.69,0.0029,1343.17
+covtype,XGBoost_20missing,0.7767,0.6914,0.9635,10.25,0.002,1344.96
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
@@ -229,6 +260,7 @@ covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,13.57,0.0036,1349.23
+covtype,XGBoost_30missing,0.7419,0.6344,0.9497,10.48,0.0024,1417.32
 credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
 credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
 credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
@@ -239,6 +271,7 @@ credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
 credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
 credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
 credit-g,LightGBM,0.76,0.6828,0.7508,3.19,0.007,285.27
+credit-g,LightGBM,0.76,0.6828,0.7508,4.38,0.0067,288.22
 credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
 credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
 credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
@@ -249,6 +282,7 @@ credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
 credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
 credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
 credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.7,0.0,410.64
+credit-g,LightGBM_0missing,0.76,0.6828,0.7508,3.87,0.0067,409.59
 credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
 credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
 credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
@@ -259,6 +293,7 @@ credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
 credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
 credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
 credit-g,LightGBM_10missing,0.75,0.6681,0.7547,4.04,0.0035,411.84
+credit-g,LightGBM_10missing,0.75,0.6681,0.7547,3.85,0.0067,408.55
 credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
 credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
 credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
@@ -269,6 +304,7 @@ credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
 credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
 credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
 credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.95,0.0067,411.69
+credit-g,LightGBM_20missing,0.7367,0.6473,0.7421,3.71,0.0067,411.05
 credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
 credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
 credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
@@ -279,7 +315,9 @@ credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
 credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
 credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
 credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.8,0.0067,412.66
+credit-g,LightGBM_30missing,0.72,0.6198,0.7261,3.68,0.0067,412.71
 credit-g,LightGBM_700samples,0.76,0.6828,0.7508,4.62,0.0035,482.01
+credit-g,LightGBM_700samples,0.76,0.6828,0.7508,3.85,0.0067,507.62
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
@@ -290,6 +328,7 @@ credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.11,0.0267,379.74
+credit-g,XGBoost,0.7167,0.6392,0.7376,2.98,0.0233,379.82
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
@@ -300,6 +339,7 @@ credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,4.16,0.0588,412.9
+credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,3.88,0.0267,409.69
 credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
 credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
 credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
@@ -310,6 +350,7 @@ credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
 credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
 credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
 credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.48,0.0169,411.86
+credit-g,XGBoost_10missing,0.7467,0.6708,0.7556,4.08,0.02,408.55
 credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
 credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
 credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
@@ -320,6 +361,7 @@ credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
 credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
 credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
 credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.96,0.0167,411.5
+credit-g,XGBoost_20missing,0.7267,0.6356,0.7414,3.76,0.0233,410.8
 credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
 credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
 credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
@@ -330,4 +372,6 @@ credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
 credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
 credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
 credit-g,XGBoost_30missing,0.7267,0.6418,0.711,4.04,0.0133,412.4
+credit-g,XGBoost_30missing,0.7267,0.6418,0.711,3.72,0.02,411.63
 credit-g,XGBoost_700samples,0.7167,0.6392,0.7376,3.56,0.0305,502.86
+credit-g,XGBoost_700samples,0.7167,0.6392,0.7376,3.98,0.0267,512.38
