@@ -11,3 +11,15 @@ covtype,LightGBM_0missing,0.8514,0.8291,0.9795,4.61,0.0032,973.03
 covtype,LightGBM_10missing,0.8038,0.7379,0.9598,5.79,0.0038,1127.0
 covtype,LightGBM_20missing,0.7672,0.6779,0.9565,6.46,0.0045,1332.56
 covtype,LightGBM_30missing,0.7345,0.6223,0.9416,7.14,0.0053,828.67
+adult,LightGBM_0missing,0.8672,0.8083,0.9227,3.5,0.0014,496.58
+adult,LightGBM_10missing,0.861,0.7983,0.9139,4.33,0.0012,408.12
+adult,LightGBM_20missing,0.8541,0.7856,0.9054,4.13,0.001,405.73
+adult,LightGBM_30missing,0.8456,0.7712,0.894,4.23,0.001,408.95
+credit-g,LightGBM_0missing,0.76,0.6828,0.7508,4.47,0.0113,404.59
+credit-g,LightGBM_10missing,0.76,0.6828,0.7712,3.72,0.0081,404.62
+credit-g,LightGBM_20missing,0.7333,0.6444,0.7623,4.04,0.0102,405.66
+credit-g,LightGBM_30missing,0.7167,0.6239,0.6727,4.68,0.0067,406.28
+covtype,LightGBM_0missing,0.8503,0.814,0.984,2.83,0.0039,546.38
+covtype,LightGBM_10missing,0.796,0.7182,0.9655,3.14,0.0044,587.43
+covtype,LightGBM_20missing,0.7581,0.6485,0.9533,3.21,0.0041,638.17
+covtype,LightGBM_30missing,0.7278,0.5975,0.9396,3.27,0.0048,515.43

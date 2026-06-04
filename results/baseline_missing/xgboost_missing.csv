@@ -11,3 +11,15 @@ covtype,XGBoost_0missing,0.8693,0.8515,0.989,9.16,0.0012,993.61
 covtype,XGBoost_10missing,0.8162,0.7661,0.9762,10.49,0.0018,1177.71
 covtype,XGBoost_20missing,0.7767,0.6914,0.9635,10.25,0.002,1344.96
 covtype,XGBoost_30missing,0.7419,0.6344,0.9497,10.48,0.0024,1417.32
+adult,XGBoost_0missing,0.8662,0.8078,0.9206,3.28,0.0022,399.56
+adult,XGBoost_10missing,0.8538,0.7897,0.9084,3.0,0.0015,410.55
+adult,XGBoost_20missing,0.8522,0.786,0.9018,4.45,0.0009,416.51
+adult,XGBoost_30missing,0.846,0.7749,0.8914,3.18,0.0021,409.43
+credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,3.56,0.0259,406.06
+credit-g,XGBoost_10missing,0.7433,0.6622,0.76,3.45,0.025,404.39
+credit-g,XGBoost_20missing,0.7467,0.656,0.7575,3.72,0.0315,405.42
+credit-g,XGBoost_30missing,0.6933,0.6015,0.6664,3.68,0.0452,406.18
+covtype,XGBoost_0missing,0.8621,0.8217,0.9853,3.89,0.0017,552.42
+covtype,XGBoost_10missing,0.8026,0.7264,0.9698,3.9,0.003,593.11
+covtype,XGBoost_20missing,0.7643,0.6633,0.9555,3.77,0.0037,645.21
+covtype,XGBoost_30missing,0.7341,0.6082,0.9417,3.58,0.004,644.81
