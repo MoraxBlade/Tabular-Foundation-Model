@@ -48,7 +48,7 @@
 - `02_baseline_scalability.py`：可扩展性基线实验，测试不同训练样本规模下模型表现并保存到 `results/baseline_scalability/`。
 
 #### 03 TabICL
-- `03_tabicl_v2.py`：TabICL / TabPFN 等表格基础模型实验脚本，封装与第三方库（或 API）的调用，统一使用 `utils` 的加载与评估接口，结果保存到 `results/tabicl/` 或 `results/tabpfn/`
+- `03_tabpfn_v2.py`：TabICL / TabPFN 等表格基础模型实验脚本，封装与第三方库（或 API）的调用，统一使用 `utils` 的加载与评估接口，结果保存到 `results/tabicl/` 或 `results/tabpfn/`
 #### 04 TabPFN
 
 
@@ -72,7 +72,7 @@ Tabular-Foundation-Model/
 │   ├── 02_baseline_lightgbm.py # LightGBM 基线训练与评估
 │   ├── 02_baseline_missing_experiment.py # 缺失值基线实验脚本
 │   ├── 02_baseline_scalability.py # 可扩展性基线实验脚本
-│   ├── 03_tabicl_v2.py        # TabICL / TabPFN API 相关实验脚本
+│   ├── 03_tabpfn_v2.py        # TabICL / TabPFN API 相关实验脚本
 │   └── utils.py               # 通用工具：数据加载、评估指标、结果保存
 ├── data/                      # 数据文件（原始 / 预处理 / 含缺失 / 可扩展性）
 │   ├── raw/                   # 原始数据文件
