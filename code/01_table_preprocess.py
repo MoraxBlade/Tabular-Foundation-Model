@@ -9,12 +9,13 @@ SEED = 42
 np.random.seed(SEED)
 TEST_SIZE = 0.3
 
-# 针对表格大模型，过大的数据集需要下采样（提高实验效率）
-COVTYPE_SAMPLE_SIZE = 50000 
+# 针对表格大模型的数据集降采样配置
+ADULT_SAMPLE_SIZE = 10000      # adult 降采样后的总样本量（划分前）
+COVTYPE_SAMPLE_SIZE = 50000    # covtype 降采样后的总样本量（划分前）
 
-# ===================== 1. 基础数据清洗 (保留给表格大模型使用) =====================
+# ===================== 1. 基础数据清洗 =====================
 def get_clean_adult():
-    """处理 UCI 经典 adult 数据集，直接从 ucimlrepo 获取，仅做字符串清理和标签转化"""
+    """处理 UCI 经典 adult 数据集，支持分层降采样至 ADULT_SAMPLE_SIZE 行"""
     print("正在从 ucimlrepo 在线获取 adult (ID: 2) 数据集...")
     adult = fetch_ucirepo(id=2)
     
@@ -34,10 +35,28 @@ def get_clean_adult():
     # 过滤掉无法解析标签的异常行
     df = df.dropna(subset=[df.columns[-1]])
     df.iloc[:, -1] = df.iloc[:, -1].astype(int)
+    
+    # ----- Adult 降采样逻辑（分层采样）-----
+    original_len = len(df)
+    if original_len > ADULT_SAMPLE_SIZE:
+        print(f"[-] adult 原始数据 {original_len:,} 行，需降采样至 {ADULT_SAMPLE_SIZE:,} 行（分层采样）")
+        y_label = df.iloc[:, -1]
+        # 使用 train_test_split 进行分层采样，保留目标行数作为总样本
+        downsampled_df, _ = train_test_split(
+            df,
+            train_size=ADULT_SAMPLE_SIZE,
+            random_state=SEED,
+            stratify=y_label
+        )
+        df = downsampled_df.reset_index(drop=True)
+        print(f"   降采样完成，总样本数：{len(df):,}")
+    else:
+        print(f"[-] adult 原始数据 {original_len:,} 行，未超过 {ADULT_SAMPLE_SIZE}，保留全部数据")
+    
     return df
 
 def get_clean_credit_g():
-    """处理德国信用数据集，直接从 ucimlrepo 获取"""
+    """处理德国信用数据集，直接从 ucimlrepo 获取（无降采样）"""
     print("正在从 ucimlrepo 在线获取 credit-g (Statlog, ID: 144) 数据集...")
     credit = fetch_ucirepo(id=144)
     
@@ -50,7 +69,7 @@ def get_clean_credit_g():
     return df
 
 def get_clean_covtype():
-    """处理森林覆盖类型数据集，直接从 ucimlrepo 获取，并进行下采样"""
+    """处理森林覆盖类型数据集，支持分层降采样至 COVTYPE_SAMPLE_SIZE 行"""
     print("正在从 ucimlrepo 在线获取 covtype (ID: 31) 数据集，这可能需要一点时间...")
     covertype = fetch_ucirepo(id=31)
     
@@ -63,11 +82,22 @@ def get_clean_covtype():
     df.iloc[:, -1] = df.iloc[:, -1] - 1
     df.iloc[:, -1] = df.iloc[:, -1].astype(int)
     
-    # [新增] 专门为 covtype 进行下采样
-    if len(df) > COVTYPE_SAMPLE_SIZE:
-        print(f"[-] covtype 数据集过大({len(df)}行)，下采样至 {COVTYPE_SAMPLE_SIZE} 行...")
-        # 随机采样并重置索引
-        df = df.sample(n=COVTYPE_SAMPLE_SIZE, random_state=SEED).reset_index(drop=True)
+    # ----- Covtype 降采样逻辑（分层采样）-----
+    original_len = len(df)
+    if original_len > COVTYPE_SAMPLE_SIZE:
+        print(f"[-] covtype 原始数据 {original_len:,} 行，需降采样至 {COVTYPE_SAMPLE_SIZE:,} 行（分层采样）")
+        y_label = df.iloc[:, -1]
+        downsampled_df, _ = train_test_split(
+            df,
+            train_size=COVTYPE_SAMPLE_SIZE,
+            random_state=SEED,
+            stratify=y_label
+        )
+        df = downsampled_df.reset_index(drop=True)
+        print(f"   降采样完成，总样本数：{len(df):,}")
+    else:
+        print(f"[-] covtype 原始数据 {original_len:,} 行，未超过 {COVTYPE_SAMPLE_SIZE}，保留全部数据")
+    
     return df
 
 # ===================== 2. 基线模型特征转换 =====================
@@ -104,7 +134,7 @@ def split_and_save(df_clean, dataset_name):
     os.makedirs(base_dir, exist_ok=True)
     train_base.to_csv(f"{base_dir}/{dataset_name}_train.csv", index=False)
     test_base.to_csv(f"{base_dir}/{dataset_name}_test.csv", index=False)
-
+    
     # -- 保存为 TFM 表格大模型使用 (新建带语义信息的 tfm 目录) --
     tfm_dir = "data/processed/tfm"
     os.makedirs(tfm_dir, exist_ok=True)
