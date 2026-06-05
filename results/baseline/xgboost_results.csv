@@ -1,4 +1,4 @@
 dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
-adult,XGBoost,0.8662,0.8078,0.9206,2.98,0.0007,379.54
-credit-g,XGBoost,0.7167,0.6392,0.7376,2.98,0.0233,379.82
-covtype,XGBoost,0.8693,0.8515,0.989,8.38,0.0012,956.95
+adult,XGBoost,0.8597,0.7981,0.9113,2.88,0.0017,375.18
+credit-g,XGBoost,0.7167,0.6392,0.7376,3.3,0.0265,375.32
+covtype,XGBoost,0.8459,0.7965,0.9806,4.03,0.002,436.04
