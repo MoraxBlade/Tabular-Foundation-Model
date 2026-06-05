@@ -26,60 +26,109 @@
 ## 代码规范
  - 结果保存为CSV格式，列名统一：dataset, model, accuracy, f1, auc, train_time, infer_time_ms, peak_memory_mb
 
-## 文件结构（已根据当前仓库实际内容更新，括号内为简短注释）
+## 文件结构
+### code文件夹说明
+#### utils 通用工具
+- `utils.py`：通用工具函数，包含数据加载函数（`load_dataset`、`load_missing_dataset`、`load_scalability_dataset`）、评估与保存函数（`evaluate_model`、`save_result`）、常量（如 `SEED`）与辅助工具（内存/时间测量、日志）。
+
+#### 00 汇总和图表输出
+- `00_summary_results.py`：汇总各类实验结果并生成 `results/summary.csv`，按需汇总子目录下的 CSV，导出对比图表到 `report/figures/`。
+
+#### 01 数据预处理
+- `01_data_preprocess.py`：原始数据预处理主脚本，负责清洗、训练/测试划分（70/30）、类别编码、数值标准化，并输出到 `data/processed/` 和 `data/tfm/`。
+- `01_table_preprocess.py`：表格数据统一预处理辅助脚本，将不同数据集转换为表格基础模型（TFM）要求的统一格式（例如列顺序、元数据、CSV 格式）。
+- `01_missing_value.py`：生成含缺失值的实验数据集（按 0%,10%,20%,30%），将生成文件保存到 `data/missing/`，文件名遵循 `<dataset>_{train|test}_{N}missing.csv`。
+- `01_scalability_dataset.py`：为可扩展性实验生成不同样本量的子集并保存到 `data/scalability/`（如 1000、10000、100000 等）。
+
+#### 02 基线模型与实验
+- `02_baseline_xgboost.py`：XGBoost 基线训练与评估脚本，使用 `utils` 接口加载数据与评估，结果追加保存到 `results/baseline/xgboost_results.csv`。
+- `02_baseline_lightgbm.py`：LightGBM 基线训练与评估脚本，保存结果到 `results/baseline/lightgbm_results.csv`。
+- `02_baseline_missing_experiment.py`：在含缺失数据集上的基线鲁棒性实验，批量运行不同缺失比例的数据并保存结果到 `results/baseline_missing/`。
+- `02_baseline_scalability.py`：可扩展性基线实验，测试不同训练样本规模下模型表现并保存到 `results/baseline_scalability/`。
+
+#### 03 TabICL
+- `03_tabicl_v2.py`：TabICL / TabPFN 等表格基础模型实验脚本，封装与第三方库（或 API）的调用，统一使用 `utils` 的加载与评估接口，结果保存到 `results/tabicl/` 或 `results/tabpfn/`
+#### 04 TabPFN
+
+
+
+
+
+### 文件树
 ```bash
 Tabular-Foundation-Model/
-├── 豆包写的逐日实验步骤.md     # 日常实验记录与步骤说明（成员个人笔记）
-├── download_datasets.py       # 脚本：批量下载/更新数据集（使用 API）
-├── requirements.txt           # Python 依赖清单，用于 `pip install -r requirements.txt`
 ├── README.md                  # 项目说明文档（本文件）
-├── code/                      # 所有实验脚本与工具代码
-│   ├── 01_data_preprocess.py  # 数据预处理：划分、编码、标准化
+├── requirements.txt           # Python 依赖清单，用于 `pip install -r requirements.txt`
+├── download_datasets.py       # 批量下载/更新数据集的脚本（走公开 API）
+├── project2机翻中文.pdf       # 项目相关参考资料/翻译文档
+├── code/                      # 所有实验脚本与通用工具代码
+│   ├── 00_summary_results.py  # 汇总各类实验结果并生成 `results/summary.csv`
+│   ├── 01_data_preprocess.py  # 原始数据预处理：清洗、划分、编码、标准化
+│   ├── 01_table_preprocess.py # 表格数据统一预处理辅助脚本
+│   ├── 01_missing_value.py    # 生成缺失值版本数据集
+│   ├── 01_scalability_dataset.py # 生成可扩展性实验所需的样本子集
 │   ├── 02_baseline_xgboost.py # XGBoost 基线训练与评估
-│   ├── 03_baseline_lightgbm.py# LightGBM 基线训练与评估
-│   ├── 04_tabpfn_v2.py        # TabPFN v2 实验脚本（负责人：wzx）
-│   ├── 05_tabicl_v2.py        # TabICL v2 实验脚本（负责人：gxy）
-│   ├── 06_missing_value.py    # 生成缺失值数据集的脚本（用于缺失值实验）
-│   ├── 07_baseline_missing_experiment.py # 缺失值基线实验（命名与用途示例）
-│   ├── 08_summary_results.py  # 汇总并生成 `results/summary.csv` 的脚本
-│   ├── 09_scalability_dataset.py  # 可扩展性数据准备脚本（生成样本量列表）
-│   ├── 10_scalability_baseline.py # 可扩展性基线实验脚本（性能对比）
-│   └── utils.py               # 通用工具（数据加载、评估指标、结果保存）
-├── data/                      # 保存数据集（原始/预处理/含缺失版本）
-│   ├── raw/                   # 原始数据或下载链接（大文件建议不直接入仓）
+│   ├── 02_baseline_lightgbm.py # LightGBM 基线训练与评估
+│   ├── 02_baseline_missing_experiment.py # 缺失值基线实验脚本
+│   ├── 02_baseline_scalability.py # 可扩展性基线实验脚本
+│   ├── 03_tabicl_v2.py        # TabICL / TabPFN API 相关实验脚本
+│   └── utils.py               # 通用工具：数据加载、评估指标、结果保存
+├── data/                      # 数据文件（原始 / 预处理 / 含缺失 / 可扩展性）
+│   ├── raw/                   # 原始数据文件
 │   │   ├── adult.csv
-│   │   ├── covtype.csv
+│   │   ├── covtype_raw.csv
 │   │   ├── credit-g.csv
-│   │   └── download_links.txt # 原始数据下载链接或说明
-│   ├── processed/             # 预处理后用于训练/测试的 CSV（统一格式）
+│   │   └── ...
+│   ├── processed/             # 预处理后用于训练/测试的统一 CSV
 │   │   ├── adult_train.csv
 │   │   ├── adult_test.csv
-│   │   └── ...
-│   └── missing/               # 按缺失比例生成的实验数据集（用于缺失值实验）
-│       ├── adult_train_0missing.csv
-│       ├── adult_train_10missing.csv
-│       ├── ...                # 命名模式：<dataset>_{train|test}_{N}missing.csv
+│   │   ├── credit-g_train.csv
+│   │   ├── credit-g_test.csv
+│   │   ├── covtype_train.csv
+│   │   ├── covtype_test.csv
+│   │   └── tfm/               # 面向表格基础模型的统一格式数据
+│   ├── missing/               # 按缺失比例生成的实验数据集
+│   │   ├── adult_train_0missing.csv
+│   │   ├── adult_train_10missing.csv
+│   │   ├── ...                # 命名模式：<dataset>_{train|test}_{N}missing.csv
+│   └── scalability/           # 不同样本量的可扩展性实验数据
+│       ├── adult_train_1000samples.csv
+│       ├── adult_train_10000samples.csv
+│       ├── covtype_train_1000samples.csv
+│       ├── covtype_train_10000samples.csv
+│       ├── covtype_train_100000samples.csv
+│       └── credit-g_train_700samples.csv
 ├── results/                   # 所有实验结果（CSV 格式，按子目录区分）
 │   ├── baseline/              # 基线模型结果（XGBoost / LightGBM）
 │   │   ├── xgboost_results.csv
 │   │   └── lightgbm_results.csv
-│   ├── baseline_missing/      # 缺失值实验结果（脚本会递归查找）
+│   ├── baseline_missing/      # 缺失值实验结果
 │   │   ├── xgboost_missing.csv
 │   │   └── lightgbm_missing.csv
-│   ├── tabpfn/                # TabPFN 实验结果
-│   ├── tabicl/                # TabICL 实验结果
+│   ├── baseline_scalability/  # 可扩展性基线实验结果
+│   │   ├── xgboost_scalability.csv
+│   │   └── lightgbm_scalability.csv
+│   ├── tabpfn/                # TabPFN 结果输出目录
+│   │   ├── adult_tabpfn_result.csv
+│   │   ├── covtype_tabpfn_result.csv
+│   │   └── credit-g_tabpfn_result.csv
+│   ├── tabicl/                # TabICL 结果输出目录
 │   ├── test/                  # 临时/测试结果（例如 quick-check）
-│   └── summary.csv            # 汇总表：合并各实验结果供 `08_summary_results.py` 使用
+│   │   └── test_result.csv
+│   └── summary.csv            # 汇总表：合并各实验结果供 `00_summary_results.py` 使用
 ├── report/                    # 报告与答辩材料（草稿、图表、最终稿）
-│   ├── drafts/                # 各成员草稿与分工提交（按文件命名规则）
+│   ├── drafts/                # 各成员草稿与阶段记录
 │   │   ├── 1_baseline.md
-│   │   ├── daily_update.md    # 同步更新
-│   │   └── ...
-│   ├── figures/               # 导出的图表（统一格式、300 DPI PNG）
-│   └── final/                 # 最终整合材料（main.md / main.pdf / PPT）
-│       ├── main.md
-│       ├── main.pdf
-│       └── presentation.pptx
+│   │   └── daily_update.md
+│   ├── figures/               # 导出的图表（PNG）
+│   │   ├── base_accuracy.png
+│   │   ├── missing_trend_adult.png
+│   │   ├── missing_trend_credit-g.png
+│   │   ├── missing_trend_covtype.png
+│   │   ├── scalability_adult.png
+│   │   ├── scalability_credit-g.png
+│   │   └── scalability_covtype.png
+│   └── final/                 # 最终整合材料（主文档、PDF、PPT）
 └── .gitignore                 # Git 忽略规则（不跟踪大数据 / 虚拟环境等）
 ```
 
