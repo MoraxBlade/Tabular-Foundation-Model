@@ -1,6 +1,6 @@
 # code/08_summary_results.py
 """
-实验结果汇总与可视化脚本（修复版 + TabPFN 显式支持）
+实验结果汇总与可视化脚本（修复版 + TabPFN 显式支持，修复重复列名）
 """
 
 import pandas as pd
@@ -28,22 +28,24 @@ LABEL_MISS_PCT = "Missing Ratio (%)"
 TITLE_BASE = "Baseline Model Accuracy Comparison"
 TITLE_MISS = "Robustness to Missing Values"
 
-# ==================== 加载所有结果（显式支持 TabPFN） ====================
+# ==================== 加载所有结果（修复重复列名） ====================
 def load_all_results():
     all_dfs = []
-    required_cols = {"dataset", "model", "accuracy", "f1", "auc", "train_time", "infer_time_ms", "peak_memory_mb"}
+    required_cols = ["dataset", "model", "accuracy", "f1", "auc", "train_time", "infer_time_ms", "peak_memory_mb"]
     
-    # 1. 处理普通结果（基线、缺失值、可扩展性）
+    # 1. 处理普通结果（基线、缺失值、可扩展性），跳过 test 和 tabpfn 目录
     for csv_path in glob(f"{RESULT_ROOT}/**/*.csv", recursive=True):
-        if "tabpfn" in csv_path.lower():
+        path_lower = csv_path.lower()
+        if "tabpfn" in path_lower or "test" in path_lower:
             continue
         try:
             df = pd.read_csv(csv_path)
-            if not required_cols.issubset(df.columns):
+            if not set(required_cols).issubset(df.columns):
                 print(f"Skipped {csv_path}: missing required columns")
                 continue
             df["model"] = df["model"].astype(str).str.strip()
             df = df[(df["accuracy"] >= 0) & (df["accuracy"] <= 1)]
+            df = df[required_cols]
             all_dfs.append(df)
             print(f"Loaded: {csv_path} ({len(df)} rows)")
         except Exception as e:
@@ -54,7 +56,6 @@ def load_all_results():
     for csv_path in tabpfn_files:
         try:
             df = pd.read_csv(csv_path)
-            # 列名映射
             col_map = {
                 "Dataset": "dataset",
                 "Accuracy": "accuracy",
@@ -64,6 +65,9 @@ def load_all_results():
                 "F1-weighted": "f1"
             }
             df = df.rename(columns=col_map)
+            # 关键修复：删除重复的列名（例如 F1-macro 和 F1-weighted 都变成 f1）
+            df = df.loc[:, ~df.columns.duplicated()]
+            
             if "dataset" not in df.columns or "accuracy" not in df.columns:
                 print(f"Skipped {csv_path}: missing dataset or accuracy column")
                 continue
@@ -75,7 +79,11 @@ def load_all_results():
                 df["auc"] = -1.0
             if "f1" not in df.columns:
                 df["f1"] = -1.0
-            df = df[["dataset", "model", "accuracy", "f1", "auc", "train_time", "infer_time_ms", "peak_memory_mb"]]
+            # 确保所有 required_cols 都存在
+            for col in required_cols:
+                if col not in df.columns:
+                    df[col] = -1.0
+            df = df[required_cols]
             df = df[(df["accuracy"] >= 0) & (df["accuracy"] <= 1)]
             all_dfs.append(df)
             print(f"Loaded TabPFN: {csv_path} ({len(df)} rows)")
@@ -84,7 +92,7 @@ def load_all_results():
     
     if not all_dfs:
         return None
-    full = pd.concat(all_dfs, ignore_index=True)
+    full = pd.concat(all_dfs, ignore_index=True, sort=False)
     full = full.sort_values(["dataset", "model"]).reset_index(drop=True)
     return full
 

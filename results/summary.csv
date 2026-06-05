@@ -29,6 +29,7 @@ covtype,LightGBM_2432samples,0.7449,0.547,0.9041,2.81,0.0047,423.81
 covtype,LightGBM_30missing,0.7109,0.5537,0.927,2.45,0.005,453.18
 covtype,LightGBM_35000samples,0.8412,0.7818,0.9778,3.71,0.0035,461.02
 covtype,LightGBM_5916samples,0.7811,0.6219,0.9409,2.9,0.0041,434.85
+covtype,TabPFN,0.9297,0.8863,-1.0,-1.0,-1.0,-1.0
 covtype,XGBoost,0.8459,0.7965,0.9806,4.03,0.002,436.04
 covtype,XGBoost_0missing,0.8459,0.7965,0.9806,2.4,0.0019,462.03
 covtype,XGBoost_1000samples,0.7051,0.4834,0.87,2.71,0.0014,416.66
@@ -45,6 +46,7 @@ credit-g,LightGBM_10missing,0.74,0.6564,0.7447,3.35,0.0067,405.17
 credit-g,LightGBM_20missing,0.7267,0.6506,0.7151,3.38,0.006,406.01
 credit-g,LightGBM_30missing,0.6933,0.5947,0.6795,3.56,0.0073,407.83
 credit-g,LightGBM_700samples,0.76,0.6828,0.7508,3.36,0.0046,446.51
+credit-g,TabPFN,0.78,0.8527,0.7865,-1.0,-1.0,-1.0
 credit-g,XGBoost,0.7167,0.6392,0.7376,3.3,0.0265,375.32
 credit-g,XGBoost_0missing,0.7167,0.6392,0.7376,3.32,0.0262,404.18
 credit-g,XGBoost_10missing,0.7267,0.6323,0.7243,3.34,0.02,404.88
