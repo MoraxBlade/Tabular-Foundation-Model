@@ -8,36 +8,34 @@ SEED = 42
 np.random.seed(SEED)
 TEST_SIZE = 0.3
 
-# 标准数据集样本量（用于完整性校验）
+# 标准数据集原始行数（仅用于校验原始数据完整性）
 EXPECTED_ROWS = {
     "adult": 32561,
     "credit-g": 1000,
     "covtype": 581012
 }
 
-# ===== covtype 降采样配置（适应 SOTA 模型训练集 10 万行）=====
-DOWNSAMPLE_COVTYPE = True                # 是否对 covtype 进行降采样
-TARGET_TRAIN_SIZE = 100000               # 期望的训练集大小（行数）
-# 自动计算所需的总样本量（7:3划分，训练集占70%）
-# 总样本量 = TARGET_TRAIN_SIZE / 0.7，向上取整保证训练集≥10万
-TOTAL_REQUIRED = int(TARGET_TRAIN_SIZE / (1 - TEST_SIZE)) + 1   # 142858 左右
+# ===================== 降采样配置 =====================
+DOWNSAMPLE_ADULT = True          # 是否对 adult 进行降采样
+TARGET_TOTAL_ADULT = 10000       # 降采样后的总样本量（划分前）
+
+DOWNSAMPLE_COVTYPE = True        # 是否对 covtype 进行降采样
+TARGET_TOTAL_COVTYPE = 50000     # 降采样后的总样本量（划分前）
 
 # ===================== 数据集预处理函数 =====================
 def preprocess_adult():
-    """处理 UCI 经典 adult 收入预测数据集"""
+    """处理 UCI 经典 adult 收入预测数据集，支持降采样到 TARGET_TOTAL_ADULT 行"""
     df = pd.read_csv(
         "data/raw/adult.csv",
         na_values=["?"],
         skipinitialspace=True
     )
-    if len(df) != EXPECTED_ROWS["adult"]:
-        raise ValueError(
-            f"Adult 数据集行数异常！预期 {EXPECTED_ROWS['adult']} 行，"
-            f"实际 {len(df)} 行。"
-        )
-    print(f"adult 数据集加载成功，数据行数：{len(df):,}")
-    print(f"特征列数：{df.shape[1]-1}，标签列：{df.columns[-1]}")
+    original_len = len(df)
+    if original_len != EXPECTED_ROWS["adult"]:
+        print(f"警告：adult 数据集行数异常！预期 {EXPECTED_ROWS['adult']} 行，实际 {original_len} 行")
 
+    print(f"adult 数据集加载成功，原始数据行数：{original_len:,}")
+    
     # 标签转换
     df.iloc[:, -1] = df.iloc[:, -1].map({"<=50K": 0, ">50K": 1}).astype(int)
 
@@ -53,13 +51,32 @@ def preprocess_adult():
     missing_after = df.isnull().sum().sum()
     print(f"缺失值处理：填充前 {missing_before} 个，填充后 {missing_after} 个")
 
+    # ----- Adult 降采样逻辑 -----
+    if DOWNSAMPLE_ADULT and original_len > TARGET_TOTAL_ADULT:
+        print(f"\n adult 原始数据 {original_len:,} 行，需降采样至 {TARGET_TOTAL_ADULT:,} 行（分层采样）")
+        y = df.iloc[:, -1]
+        # 分层采样得到 TARGET_TOTAL_ADULT 行总样本
+        downsampled_df, _ = train_test_split(
+            df,
+            train_size=TARGET_TOTAL_ADULT,
+            random_state=SEED,
+            stratify=y
+        )
+        df = downsampled_df.reset_index(drop=True)
+        print(f"   降采样完成，总样本数：{len(df):,}")
+    elif DOWNSAMPLE_ADULT and original_len <= TARGET_TOTAL_ADULT:
+        print(f"\n  adult 原始数据 {original_len:,} 行不足 {TARGET_TOTAL_ADULT:,}，保留全部数据")
+    else:
+        print(f"\nadult 使用全部原始数据，行数：{original_len:,}")
+
     return df
 
 def preprocess_credit_g():
     """处理德国信用数据集"""
     df = pd.read_csv("data/raw/credit-g.csv")
-    if len(df) != EXPECTED_ROWS["credit-g"]:
-        print(f"警告：credit-g 数据集行数异常！预期 {EXPECTED_ROWS['credit-g']} 行，实际 {len(df)} 行")
+    original_len = len(df)
+    if original_len != EXPECTED_ROWS["credit-g"]:
+        print(f"警告：credit-g 数据集行数异常！预期 {EXPECTED_ROWS['credit-g']} 行，实际 {original_len} 行")
     # 标签转换
     df.iloc[:, -1] = df.iloc[:, -1].map({"bad": 0, "good": 1}).astype(int)
     # 分类特征编码
@@ -70,7 +87,7 @@ def preprocess_credit_g():
     return df
 
 def preprocess_covtype():
-    """处理森林覆盖类型数据集，支持降采样使训练集达到 TARGET_TRAIN_SIZE 行"""
+    """处理森林覆盖类型数据集，支持降采样到 TARGET_TOTAL_COVTYPE 行"""
     df = pd.read_csv("data/raw/covtype_raw.csv")
     original_len = len(df)
     if original_len != EXPECTED_ROWS["covtype"]:
@@ -80,25 +97,20 @@ def preprocess_covtype():
     df.iloc[:, -1] = df.iloc[:, -1] - 1
     df.iloc[:, -1] = df.iloc[:, -1].astype(int)
 
-    # ----- 降采样逻辑（使训练集达到 TARGET_TRAIN_SIZE 行）-----
-    if DOWNSAMPLE_COVTYPE and original_len > TOTAL_REQUIRED:
-        print(f"\n⚠️  covtype 原始数据 {original_len:,} 行，需降采样使训练集达到 {TARGET_TRAIN_SIZE:,} 行")
-        print(f"   按 7:3 划分，需要总样本量至少 {TOTAL_REQUIRED:,} 行")
-        # 分层采样得到 TOTAL_REQUIRED 行总样本
+    # ----- Covtype 降采样逻辑 -----
+    if DOWNSAMPLE_COVTYPE and original_len > TARGET_TOTAL_COVTYPE:
+        print(f"\n covtype 原始数据 {original_len:,} 行，需降采样至 {TARGET_TOTAL_COVTYPE:,} 行（分层采样）")
         y = df.iloc[:, -1]
         downsampled_df, _ = train_test_split(
             df,
-            train_size=TOTAL_REQUIRED,
+            train_size=TARGET_TOTAL_COVTYPE,
             random_state=SEED,
             stratify=y
         )
         df = downsampled_df.reset_index(drop=True)
         print(f"   降采样完成，总样本数：{len(df):,}")
-        # 检查训练集大小是否接近目标
-        approx_train = int(len(df) * (1 - TEST_SIZE))
-        print(f"   预期训练集大小：{TARGET_TRAIN_SIZE:,}，实际约：{approx_train:,}")
-    elif DOWNSAMPLE_COVTYPE and original_len <= TOTAL_REQUIRED:
-        print(f"\n  covtype 原始数据 {original_len:,} 行不足 {TOTAL_REQUIRED:,}，保留全部数据")
+    elif DOWNSAMPLE_COVTYPE and original_len <= TARGET_TOTAL_COVTYPE:
+        print(f"\n  covtype 原始数据 {original_len:,} 行不足 {TARGET_TOTAL_COVTYPE:,}，保留全部数据")
     else:
         print(f"\ncovtype 使用全部原始数据，行数：{original_len:,}")
 
