@@ -1,0 +1,9 @@
+dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
+adult,TabICL_0missing,0.8623,0.7971,0.9197,7.46,35.1213,929.12
+adult,TabICL_10missing,0.8573,0.7889,0.9111,9.38,33.6635,7602.47
+adult,TabICL_20missing,0.8407,0.7635,0.9022,8.22,32.6266,7564.64
+adult,TabICL_30missing,0.846,0.769,0.8964,8.17,32.8421,7614.43
+credit-g,TabICL_0missing,0.77,0.6891,0.7879,11.24,20.7618,7589.91
+credit-g,TabICL_10missing,0.7567,0.677,0.7897,8.69,21.3098,7965.17
+credit-g,TabICL_20missing,0.7333,0.6444,0.7702,8.07,20.32,7993.41
+credit-g,TabICL_30missing,0.7133,0.5868,0.706,8.16,21.3182,8001.2

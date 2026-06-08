@@ -1,0 +1,4 @@
+dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
+adult,TabICL,0.8647,0.8031,0.9185,7.21,27.4898,923.06
+credit-g,TabICL,0.77,0.6891,0.7879,10.8,16.9053,7539.3
+
