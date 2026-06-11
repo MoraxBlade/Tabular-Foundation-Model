@@ -204,8 +204,8 @@ dataset,model,accuracy,f1,auc,train_time,infer_time_ms,peak_memory_mb
 
 | 数据集 | 可用样本量 |
 |--------|-----------|
-| adult | 1000, 10000 |
-| covtype | 1000, 10000, 100000 |
+| adult |1000, 1626, 2645, 4303, 7000  |
+| covtype |  1000, 2432, 5916, 14389, 35000  |
 | credit-g | 700 |
 
 调用 `load_scalability_dataset(dataset_name, sample_size)`。
